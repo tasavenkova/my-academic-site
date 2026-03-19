@@ -1,1 +1,3 @@
-baseURL: 'https://tasavenkova.github.io/my-academic-site/'
+baseURL: 'https://tasavenkova.github.io/my-academic-site'
+relativeURLs: false
+canonifyURLs: true
