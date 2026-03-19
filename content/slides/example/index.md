@@ -134,8 +134,6 @@ def example():
 
 <div style="flex: 1;">
 
-![](https://images.unsplash.com/photo-1708011271954-c0d2b3155ded?w=400&dpr=2&h=400&auto=format&fit=crop&q=60&ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTh8fG1hdGhlbWF0aWNzfGVufDB8fHx8MTc2NTYzNTEzMHww&ixlib=rb-4.1.0)
-
 </div>
 
 <div style="flex: 1; padding-left: 2rem;">
