@@ -19,27 +19,23 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.121.2'  # Используем стабильную версию
+          hugo-version: '0.158.0'  # Обновили до версии, которая поддерживает функцию try
           extended: true
           
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'  # Кэширование зависимостей
           
-      - name: Install dependencies
+      - name: Install TailwindCSS standalone
         run: |
-          npm init -y
-          npm install --save-dev tailwindcss @tailwindcss/cli @tailwindcss/typography
-          
-      - name: Verify Tailwind installation
-        run: |
-          npx tailwindcss --version
-          which tailwindcss || echo "tailwindcss not in PATH"
+          curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/download/v4.1.7/tailwindcss-linux-x64
+          chmod +x tailwindcss-linux-x64
+          sudo mv tailwindcss-linux-x64 /usr/local/bin/tailwindcss
+          tailwindcss --version
           
       - name: Build with Hugo
-        run: hugo --minify
+        run: hugo --minify --ignoreVendorPaths "github.com/HugoBlox/kit/modules/blox"
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
