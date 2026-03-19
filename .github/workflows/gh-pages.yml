@@ -19,10 +19,26 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: 'latest'
+          hugo-version: '0.121.2'  # Используем стабильную версию
           extended: true
           
-      - name: Build
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'  # Кэширование зависимостей
+          
+      - name: Install dependencies
+        run: |
+          npm init -y
+          npm install --save-dev tailwindcss @tailwindcss/cli @tailwindcss/typography
+          
+      - name: Verify Tailwind installation
+        run: |
+          npx tailwindcss --version
+          which tailwindcss || echo "tailwindcss not in PATH"
+          
+      - name: Build with Hugo
         run: hugo --minify
         
       - name: Upload artifact
